@@ -1,6 +1,5 @@
 plugins {
     id 'org.jetbrains.intellij' version '0.7.2'
-    id 'application'
     id 'idea'
 }
 
@@ -26,5 +25,6 @@ patchPluginXml {
 
 sourceSets.main.java.srcDirs 'src/main/gen'
 
-mainClassName  = "generated.lexer._BisonLexer"
+idea {
 
+}

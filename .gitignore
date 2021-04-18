@@ -1,4 +1,7 @@
 # Project exclude paths
 /.gradle/
-/build/
-/build/classes/java/main/
+/build
+/.idea
+/gradle
+/src/main/gen/idea-flex.skeleton
+/src/main/gen/jflex-1.7.0-2.jar
