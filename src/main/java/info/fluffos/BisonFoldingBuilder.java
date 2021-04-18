@@ -1,0 +1,59 @@
+// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+
+package info.fluffos;
+
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.folding.FoldingBuilderEx;
+import com.intellij.lang.folding.FoldingDescriptor;
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.FoldingGroup;
+import com.intellij.openapi.project.DumbAware;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.util.PsiTreeUtil;
+import generated.psi.Rules;
+import generated.psi.RulesOrGrammarDeclaration;
+import org.apache.commons.compress.utils.Lists;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class BisonFoldingBuilder extends FoldingBuilderEx implements DumbAware {
+    @NotNull
+    @Override
+    public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick) {
+        // Get a collection of the Rules in the document below root
+        Collection<RulesOrGrammarDeclaration> RulesOrgGrammarCollection =
+                PsiTreeUtil.findChildrenOfType(root, RulesOrGrammarDeclaration.class);
+
+        ArrayList<FoldingDescriptor> descriptors = Lists.newArrayList();
+
+        var el = root.getFirstChild();
+        while((el = PsiTreeUtil.skipWhitespacesAndCommentsForward(el)) != null) {
+            if (el instanceof  RulesOrGrammarDeclaration) {
+                var child = el.getFirstChild();
+                if (child instanceof Rules) {
+                    // Add a folding descriptor for the literal expression at this node.
+                    descriptors.add(new FoldingDescriptor(child.getNode(),
+                            child.getTextRange(),
+                            FoldingGroup.newGroup(((Rules)child).getId().getText())));
+                }
+            }
+        }
+
+        return descriptors.toArray(new FoldingDescriptor[0]);
+    }
+
+
+    @Override
+    public @Nullable String getPlaceholderText(@NotNull ASTNode node) {
+        return "Rule: ...";
+    }
+
+    @Override
+    public boolean isCollapsedByDefault(@NotNull ASTNode node) {
+        return true;
+    }
+
+}

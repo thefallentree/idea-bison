@@ -1,0 +1,53 @@
+// This is a generated file. Not intended for manual editing.
+package generated.psi.impl;
+
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.util.PsiTreeUtil;
+import generated.psi.*;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+
+public class RhsImpl extends ASTWrapperPsiElement implements Rhs {
+
+  public RhsImpl(@NotNull ASTNode node) {
+    super(node);
+  }
+
+  public void accept(@NotNull Visitor visitor) {
+    visitor.visitRhs(this);
+  }
+
+  @Override
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof Visitor) accept((Visitor)visitor);
+    else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public List<Tag> getTagList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, Tag.class);
+  }
+
+  @Override
+  @NotNull
+  public List<NamedRefOpt> getNamedRefOptList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, NamedRefOpt.class);
+  }
+
+  @Override
+  @NotNull
+  public List<Symbol> getSymbolList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, Symbol.class);
+  }
+
+  @Override
+  @NotNull
+  public List<TagOpt> getTagOptList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, TagOpt.class);
+  }
+
+}

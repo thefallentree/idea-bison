@@ -1,0 +1,24 @@
+<idea-plugin>
+    <id>org.example.idea-yacc</id>
+    <name>idea-Bison</name>
+    <vendor email="sunyucong@gmail.com" url="http://www.fluffos.info">Yucong Sun</vendor>
+
+    <description><![CDATA[
+    Bison grammar file support: highlight etc
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <fileType implementationClass="info.fluffos.BisonFileType" name="Bison Grammar File" fieldName="INSTANCE" language="Bison" extensions="y"/>
+        <lang.parserDefinition language="Bison" implementationClass="info.fluffos.BisonParserDefinition"/>
+        <lang.foldingBuilder language="Bison" implementationClass="info.fluffos.BisonFoldingBuilder"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
