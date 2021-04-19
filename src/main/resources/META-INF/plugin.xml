@@ -1,10 +1,10 @@
 <idea-plugin>
-    <id>org.example.idea-yacc</id>
-    <name>idea-Bison</name>
-    <vendor email="sunyucong@gmail.com" url="http://www.fluffos.info">Yucong Sun</vendor>
+    <id>info.fluffos.idea_bison</id>
+    <name>Bison Language Support</name>
+    <vendor email="sunyucong@gmail.com" url="https://github.com/thefallentree/idea-bison">Yucong Sun</vendor>
 
     <description><![CDATA[
-    Bison grammar file support: highlight etc
+    Bison grammar file (*.y) support: folding, syntax highlight, and more!
     ]]></description>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html

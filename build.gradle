@@ -8,7 +8,7 @@ repositories {
 }
 
 group 'info.fluffos'
-version '1.0-SNAPSHOT'
+version '0.1.20210419'
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
@@ -18,8 +18,12 @@ intellij {
 
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      2021.04.29 full grammar support complete.
+      """
+}
+
+publishPlugin {
+    token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
 }
 
 sourceSets.main.java.srcDirs 'src/main/gen'
