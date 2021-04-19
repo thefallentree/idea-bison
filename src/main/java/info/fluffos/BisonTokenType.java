@@ -8,4 +8,8 @@ public class BisonTokenType extends IElementType {
     public BisonTokenType(@NonNls @NotNull String debugName) {
         super(debugName, BisonLanguage.INSTANCE);
     }
+
+    public static BisonTokenType directive(@NonNls @NotNull String name) {
+        return new BisonTokenType(name);
+    }
 }

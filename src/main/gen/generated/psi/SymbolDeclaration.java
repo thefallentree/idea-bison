@@ -1,11 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi;
 
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
 
 public interface SymbolDeclaration extends PsiElement {
 
@@ -19,7 +17,7 @@ public interface SymbolDeclaration extends PsiElement {
   PrecedenceDeclarator getPrecedenceDeclarator();
 
   @NotNull
-  List<Symbols1> getSymbols1List();
+  List<Symbol> getSymbolList();
 
   @NotNull
   List<TokenDeclForPrec1> getTokenDeclForPrec1List();

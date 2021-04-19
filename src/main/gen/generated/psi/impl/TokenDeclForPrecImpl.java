@@ -1,12 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.util.PsiTreeUtil;
+import static generated.GeneratedTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import generated.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class TokenDeclForPrecImpl extends ASTWrapperPsiElement implements TokenDeclForPrec {
 
@@ -32,14 +35,14 @@ public class TokenDeclForPrecImpl extends ASTWrapperPsiElement implements TokenD
 
   @Override
   @Nullable
-  public IntOpt getIntOpt() {
-    return findChildByClass(IntOpt.class);
+  public StringAsId getStringAsId() {
+    return findChildByClass(StringAsId.class);
   }
 
   @Override
   @Nullable
-  public StringAsId getStringAsId() {
-    return findChildByClass(StringAsId.class);
+  public PsiElement getIntLiteral() {
+    return findChildByType(INT_LITERAL);
   }
 
 }

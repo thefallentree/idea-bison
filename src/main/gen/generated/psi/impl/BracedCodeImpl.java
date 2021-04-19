@@ -11,26 +11,20 @@ import static generated.GeneratedTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import generated.psi.*;
 
-public class TokenDeclForPrec1Impl extends ASTWrapperPsiElement implements TokenDeclForPrec1 {
+public class BracedCodeImpl extends ASTWrapperPsiElement implements BracedCode {
 
-  public TokenDeclForPrec1Impl(@NotNull ASTNode node) {
+  public BracedCodeImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull Visitor visitor) {
-    visitor.visitTokenDeclForPrec1(this);
+    visitor.visitBracedCode(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof Visitor) accept((Visitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @NotNull
-  public List<TokenDeclForPrec> getTokenDeclForPrecList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, TokenDeclForPrec.class);
   }
 
 }

@@ -1,20 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi;
 
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
 
 public interface Rules extends PsiElement {
-
-  @NotNull
-  NamedRefOpt getNamedRefOpt();
 
   @NotNull
   List<Rhs> getRhsList();
 
   @NotNull
-  PsiElement getId();
+  PsiElement getIdColon();
 
 }

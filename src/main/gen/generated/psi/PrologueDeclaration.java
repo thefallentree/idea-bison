@@ -1,16 +1,20 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi;
 
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.Nullable;
 
 public interface PrologueDeclaration extends PsiElement {
+
+  @Nullable
+  BracedCode getBracedCode();
 
   @Nullable
   GrammarDeclaration getGrammarDeclaration();
 
   @Nullable
-  StringOpt getStringOpt();
+  Prologue getPrologue();
 
   @Nullable
   Value getValue();
@@ -19,12 +23,6 @@ public interface PrologueDeclaration extends PsiElement {
   Variable getVariable();
 
   @Nullable
-  PsiElement getBracedCode();
-
-  @Nullable
-  PsiElement getPrologue();
-
-  @Nullable
-  PsiElement getString();
+  PsiElement getIntLiteral();
 
 }

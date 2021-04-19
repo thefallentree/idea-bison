@@ -1,9 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi;
 
-import com.intellij.psi.PsiElement;
+import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.psi.PsiElement;
 
 public class Visitor extends PsiElementVisitor {
 
@@ -19,11 +19,15 @@ public class Visitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitBracedCode(@NotNull BracedCode o) {
+    visitPsiElement(o);
+  }
+
   public void visitCodePropsType(@NotNull CodePropsType o) {
     visitPsiElement(o);
   }
 
-  public void visitEpilogueOpt(@NotNull EpilogueOpt o) {
+  public void visitEpilogue(@NotNull Epilogue o) {
     visitPsiElement(o);
   }
 
@@ -35,19 +39,15 @@ public class Visitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitIntOpt(@NotNull IntOpt o) {
-    visitPsiElement(o);
-  }
-
-  public void visitNamedRefOpt(@NotNull NamedRefOpt o) {
-    visitPsiElement(o);
-  }
-
   public void visitNtermDecls(@NotNull NtermDecls o) {
     visitPsiElement(o);
   }
 
   public void visitPrecedenceDeclarator(@NotNull PrecedenceDeclarator o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPrologue(@NotNull Prologue o) {
     visitPsiElement(o);
   }
 
@@ -71,10 +71,6 @@ public class Visitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitStringOpt(@NotNull StringOpt o) {
-    visitPsiElement(o);
-  }
-
   public void visitSymbol(@NotNull Symbol o) {
     visitPsiElement(o);
   }
@@ -83,19 +79,7 @@ public class Visitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitSymbols1(@NotNull Symbols1 o) {
-    visitPsiElement(o);
-  }
-
-  public void visitTagOpt(@NotNull TagOpt o) {
-    visitPsiElement(o);
-  }
-
   public void visitTokenDecl(@NotNull TokenDecl o) {
-    visitPsiElement(o);
-  }
-
-  public void visitTokenDecl1(@NotNull TokenDecl1 o) {
     visitPsiElement(o);
   }
 

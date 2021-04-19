@@ -1,10 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi;
 
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
 
 public interface Rhs extends PsiElement {
 
@@ -12,12 +11,9 @@ public interface Rhs extends PsiElement {
   List<Tag> getTagList();
 
   @NotNull
-  List<NamedRefOpt> getNamedRefOptList();
+  List<BracedCode> getBracedCodeList();
 
   @NotNull
   List<Symbol> getSymbolList();
-
-  @NotNull
-  List<TagOpt> getTagOptList();
 
 }

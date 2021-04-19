@@ -1,15 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
-import generated.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
+import com.intellij.psi.util.PsiTreeUtil;
 import static generated.GeneratedTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import generated.psi.*;
 
 public class PrologueDeclarationImpl extends ASTWrapperPsiElement implements PrologueDeclaration {
 
@@ -29,14 +29,20 @@ public class PrologueDeclarationImpl extends ASTWrapperPsiElement implements Pro
 
   @Override
   @Nullable
+  public BracedCode getBracedCode() {
+    return findChildByClass(BracedCode.class);
+  }
+
+  @Override
+  @Nullable
   public GrammarDeclaration getGrammarDeclaration() {
     return findChildByClass(GrammarDeclaration.class);
   }
 
   @Override
   @Nullable
-  public StringOpt getStringOpt() {
-    return findChildByClass(StringOpt.class);
+  public Prologue getPrologue() {
+    return findChildByClass(Prologue.class);
   }
 
   @Override
@@ -53,20 +59,8 @@ public class PrologueDeclarationImpl extends ASTWrapperPsiElement implements Pro
 
   @Override
   @Nullable
-  public PsiElement getBracedCode() {
-    return findChildByType(BRACED_CODE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getPrologue() {
-    return findChildByType(PROLOGUE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getString() {
-    return findChildByType(STRING);
+  public PsiElement getIntLiteral() {
+    return findChildByType(INT_LITERAL);
   }
 
 }

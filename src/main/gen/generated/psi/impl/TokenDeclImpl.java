@@ -1,11 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.util.PsiTreeUtil;
+import static generated.GeneratedTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import generated.psi.*;
-import org.jetbrains.annotations.NotNull;
 
 public class TokenDeclImpl extends ASTWrapperPsiElement implements TokenDecl {
 
@@ -36,9 +40,9 @@ public class TokenDeclImpl extends ASTWrapperPsiElement implements TokenDecl {
   }
 
   @Override
-  @NotNull
-  public IntOpt getIntOpt() {
-    return findNotNullChildByClass(IntOpt.class);
+  @Nullable
+  public PsiElement getIntLiteral() {
+    return findChildByType(INT_LITERAL);
   }
 
 }

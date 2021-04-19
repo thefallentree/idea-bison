@@ -14,7 +14,6 @@ version '1.0-SNAPSHOT'
 intellij {
     version '2021.1'
     // type "CL"
-
 }
 
 patchPluginXml {

@@ -1,18 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
-import generated.psi.IdOrCharLiteral;
-import generated.psi.Value;
-import generated.psi.Visitor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import static generated.GeneratedTypes.BRACED_CODE;
-import static generated.GeneratedTypes.STRING;
+import com.intellij.psi.util.PsiTreeUtil;
+import static generated.GeneratedTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import generated.psi.*;
 
 public class ValueImpl extends ASTWrapperPsiElement implements Value {
 
@@ -38,14 +35,8 @@ public class ValueImpl extends ASTWrapperPsiElement implements Value {
 
   @Override
   @Nullable
-  public PsiElement getBracedCode() {
-    return findChildByType(BRACED_CODE);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getString() {
-    return findChildByType(STRING);
+  public BracedCode getBracedCode() {
+    return findChildByClass(BracedCode.class);
   }
 
 }

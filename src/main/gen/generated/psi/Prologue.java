@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface Variable extends PsiElement {
+public interface Prologue extends PsiElement {
 
   @NotNull
-  IdOrCharLiteral getIdOrCharLiteral();
+  PsiElement getPrologueLiteral();
 
 }

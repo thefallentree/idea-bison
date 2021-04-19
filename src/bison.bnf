@@ -1,45 +1,47 @@
 {
-    tokens=[
-        ID = "regexp:[.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_]([.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_]|[-0-9])*"
-        BRACKETED_ID = "regexp:\[[.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_]([.abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_]|[-0-9])*\]"
-        space = "regexp:\s+"
-        PROLOGUE = "regexp:%\{+%}"
-        CHAR_LITERAL = "regexp:'.+'"
-        STRING ="regexp:\".+\""
-        BRACED_CODE="regexp:\{.+}"
-        comment = "regexp:/\*.+\*\/"
-        PERCENT_PERCENT="regexp:%%"
+    // stubs
+    tokens = [
+        ID="regexp:."
+        ID_COLON="regexp:."
+        PROLOGUE_LITERAL="regexp:."
+        EPILOGUE_LITERAL="regexp:."
+        INT_LITERAL="regexp:."
+        COMMENT="regexp:."
     ]
     elementTypeClass="info.fluffos.BisonCompositeElementType"
     tokenTypeClass="info.fluffos.BisonTokenType"
 }
 
-input    ::= prologue_declaration* PERCENT_PERCENT rules_or_grammar_declaration+ epilogue_opt
-prologue_declaration ::= PROLOGUE
+
+input    ::= prologue_declaration* '%%' rules_or_grammar_declaration+ '%%' epilogue?
+prologue_declaration ::= prologue
            | grammar_declaration
            | '%<flag>'
            | '%define' variable value
-           | '%header' string_opt
+           | '%header' STRING?
            | '%error-verbose'
            | ( '%expect' | '%expect-rr' ) INT_LITERAL
            | ( '%file-prefix' | '%language' | '%name-prefix' | '%output' | '%require' | '%skeleton' ) STRING
            | '%glr-parser'
-           | '%initial-action' BRACED_CODE
+           | '%initial-action' braced_code
            | '%no-lines'
            | '%nondeterministic-parser'
-           | '%param' '{...}'+
+           | '%param' braced_code+
            | '%pure-parser'
            | '%token-table'
            | '%verbose'
            | '%yacc'
            | error? ';'
+
+
+
 grammar_declaration
          ::= symbol_declaration
-           | '%start' symbols_1
-           | code_props_type '{...}' generic_symlist_item+
+           | '%start' symbol+
+           | code_props_type braced_code generic_symlist_item+
            | '%default-prec'
            | '%no-default-prec'
-           | ( '%code' ID_OR_CHAR_LITERAL? | '%union' union_name ) '{...}'
+           | ( '%code' ID_OR_CHAR_LITERAL? | '%union' union_name ) braced_code
 code_props_type
          ::= '%destructor'
            | '%printer'
@@ -48,51 +50,58 @@ union_name
 symbol_declaration
          ::= '%nterm' nterm_decls
            | '%token' token_decls
-           | '%type' TAG? symbols_1 ( TAG symbols_1 )*
+           | '%type' TAG? symbol+ ( TAG symbol+ )*
            | precedence_declarator TAG? token_decl_for_prec_1 ( TAG token_decl_for_prec_1 )*
 precedence_declarator
          ::= '%left'
            | '%right'
            | '%nonassoc'
            | '%precedence'
-string_opt
-         ::= STRING?
-tag_opt  ::= TAG?
+
 generic_symlist_item
          ::= symbol
            | TAG
-TAG      ::= '<*>'
-           | '<>'
+TAG      ::= TAG_ANY
+           | TAG_NONE
+           | TAG_TAG
 nterm_decls
          ::= token_decls
 token_decls
-         ::= TAG? token_decl_1 ( TAG token_decl_1 )*
-token_decl_1
-         ::= token_decl+
+         ::= TAG? token_decl+ ( TAG token_decl+ )*
 token_decl
-         ::= ID_OR_CHAR_LITERAL int_opt alias
-int_opt  ::= INT_LITERAL?
+         ::= ID_OR_CHAR_LITERAL INT_LITERAL? alias
+
 alias    ::= ( string_as_id | TSTRING )?
 token_decl_for_prec_1
          ::= token_decl_for_prec+
+
 token_decl_for_prec
-         ::= ID_OR_CHAR_LITERAL int_opt
+         ::= ID_OR_CHAR_LITERAL INT_LITERAL?
            | string_as_id
-symbols_1
-         ::= symbol+
+
 rules_or_grammar_declaration
-         ::= rules
-           | ( grammar_declaration | error ) ';'
-rules    ::= ID named_ref_opt ':' rhs ( '|' rhs | ';' )*
-rhs      ::= ( ( symbol | tag_opt BRACED_CODE ) named_ref_opt | '%?{...}' | '%empty' | '%prec' symbol | ( '%dprec' | '%expect' | '%expect-rr' ) INT_LITERAL | '%merge' TAG )*
-named_ref_opt ::= BRACKETED_ID?
+         ::= rules ';'?
+         | grammar_declaration ';'
+
+rules    ::= ID_COLON BRACKETED_ID? ':' rhs? ('|' rhs)*
+rhs      ::= (symbol BRACKETED_ID?
+            | TAG? braced_code BRACKETED_ID?
+            | PREDICATE
+            | '%empty'
+            | '%prec' symbol
+            | ( '%dprec' | '%expect' | '%expect-rr' ) INT_LITERAL
+            | '%merge' TAG)*
+
 variable ::= ID_OR_CHAR_LITERAL
-value    ::= ( ID_OR_CHAR_LITERAL | STRING | BRACED_CODE )?
+value    ::= ( ID_OR_CHAR_LITERAL | STRING | braced_code )?
 ID_OR_CHAR_LITERAL ::= ID | CHAR_LITERAL
 
 symbol   ::= ID_OR_CHAR_LITERAL
            | string_as_id
 string_as_id
          ::= STRING
-epilogue_opt
-         ::= '%%' EPILOGUE?
+
+// TOKENS
+braced_code ::= BRACED_CODE_LITERAL
+prologue ::= PROLOGUE_LITERAL
+epilogue ::= EPILOGUE_LITERAL

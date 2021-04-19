@@ -1,20 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
-import generated.psi.NamedRefOpt;
-import generated.psi.Rhs;
-import generated.psi.Rules;
-import generated.psi.Visitor;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
-import static generated.GeneratedTypes.ID;
+import static generated.GeneratedTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import generated.psi.*;
 
 public class RulesImpl extends ASTWrapperPsiElement implements Rules {
 
@@ -34,20 +29,14 @@ public class RulesImpl extends ASTWrapperPsiElement implements Rules {
 
   @Override
   @NotNull
-  public NamedRefOpt getNamedRefOpt() {
-    return findNotNullChildByClass(NamedRefOpt.class);
-  }
-
-  @Override
-  @NotNull
   public List<Rhs> getRhsList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, Rhs.class);
   }
 
   @Override
   @NotNull
-  public PsiElement getId() {
-    return findNotNullChildByType(ID);
+  public PsiElement getIdColon() {
+    return findNotNullChildByType(ID_COLON);
   }
 
 }

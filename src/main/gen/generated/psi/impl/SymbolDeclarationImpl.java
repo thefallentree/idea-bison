@@ -1,15 +1,15 @@
 // This is a generated file. Not intended for manual editing.
 package generated.psi.impl;
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import java.util.List;
+import org.jetbrains.annotations.*;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
+import static generated.GeneratedTypes.*;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import generated.psi.*;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class SymbolDeclarationImpl extends ASTWrapperPsiElement implements SymbolDeclaration {
 
@@ -47,8 +47,8 @@ public class SymbolDeclarationImpl extends ASTWrapperPsiElement implements Symbo
 
   @Override
   @NotNull
-  public List<Symbols1> getSymbols1List() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, Symbols1.class);
+  public List<Symbol> getSymbolList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, Symbol.class);
   }
 
   @Override
