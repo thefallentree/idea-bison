@@ -19,6 +19,7 @@ public interface GeneratedTypes {
   IElementType ID_OR_CHAR_LITERAL = new BisonCompositeElementType("ID_OR_CHAR_LITERAL");
   IElementType NTERM_DECLS = new BisonCompositeElementType("NTERM_DECLS");
   IElementType PRECEDENCE_DECLARATOR = new BisonCompositeElementType("PRECEDENCE_DECLARATOR");
+  IElementType PREDICATE = new BisonCompositeElementType("PREDICATE");
   IElementType PROLOGUE = new BisonCompositeElementType("PROLOGUE");
   IElementType PROLOGUE_DECLARATION = new BisonCompositeElementType("PROLOGUE_DECLARATION");
   IElementType RHS = new BisonCompositeElementType("RHS");
@@ -45,7 +46,7 @@ public interface GeneratedTypes {
   IElementType ID = new BisonTokenType("ID");
   IElementType ID_COLON = new BisonTokenType("ID_COLON");
   IElementType INT_LITERAL = new BisonTokenType("INT_LITERAL");
-  IElementType PREDICATE = new BisonTokenType("PREDICATE");
+  IElementType PREDICATE_LITERAL = new BisonTokenType("PREDICATE_LITERAL");
   IElementType PROLOGUE_LITERAL = new BisonTokenType("PROLOGUE_LITERAL");
   IElementType STRING = new BisonTokenType("STRING");
   IElementType TAG_ANY = new BisonTokenType("TAG_ANY");
@@ -82,6 +83,9 @@ public interface GeneratedTypes {
       }
       else if (type == PRECEDENCE_DECLARATOR) {
         return new PrecedenceDeclaratorImpl(node);
+      }
+      else if (type == PREDICATE) {
+        return new PredicateImpl(node);
       }
       else if (type == PROLOGUE) {
         return new PrologueImpl(node);

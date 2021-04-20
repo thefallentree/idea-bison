@@ -18,14 +18,14 @@
 	<li>
 		Folding Prologue, Epilogue, individual Rule and Code sections "{...}", make reading grammar easier.
 	</li>
+	<li>
+		syntax highlighting
+	</li>
 </ul>
 <p>
 	Planned features:
 </p>
 <ul>
-	<li>
-		syntax highlighting
-	</li>
 	<li>
 		Jump to rule/component/token definition.
 	</li>
@@ -41,12 +41,14 @@
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <fileType implementationClass="info.fluffos.BisonFileType" name="Bison Grammar File" fieldName="INSTANCE" language="Bison" extensions="y"/>
         <lang.parserDefinition language="Bison" implementationClass="info.fluffos.BisonParserDefinition"/>
         <lang.foldingBuilder language="Bison" implementationClass="info.fluffos.BisonFoldingBuilder"/>
+        <lang.syntaxHighlighterFactory language="Bison" implementationClass="info.fluffos.BisonSyntaxHighlighterFactory"/>
     </extensions>
 
     <actions>

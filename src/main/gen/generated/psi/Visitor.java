@@ -47,6 +47,10 @@ public class Visitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitPredicate(@NotNull Predicate o) {
+    visitPsiElement(o);
+  }
+
   public void visitPrologue(@NotNull Prologue o) {
     visitPsiElement(o);
   }

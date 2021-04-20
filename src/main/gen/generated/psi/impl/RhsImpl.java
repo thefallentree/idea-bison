@@ -41,6 +41,12 @@ public class RhsImpl extends ASTWrapperPsiElement implements Rhs {
 
   @Override
   @NotNull
+  public List<Predicate> getPredicateList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, Predicate.class);
+  }
+
+  @Override
+  @NotNull
   public List<Symbol> getSymbolList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, Symbol.class);
   }

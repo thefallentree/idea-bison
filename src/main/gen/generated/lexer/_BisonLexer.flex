@@ -16,6 +16,7 @@ import static generated.GeneratedTypes.*;
   }
   int percent_percent_count = 0;
   int nesting = 0;
+  int context_state;
 %}
 
 %public
@@ -24,7 +25,7 @@ import static generated.GeneratedTypes.*;
 %function advance
 %type IElementType
 %unicode
-%debug
+//%debug
 
 EOL=\n|\n\r
 WHITE_SPACE=\s+
@@ -63,8 +64,14 @@ xint=      0[xX][0-9abcdefABCDEF]+
 
 %x SC_TAG
 
+ /* C and C++ comments in code. */
+%x SC_COMMENT SC_LINE_COMMENT
+
  /* Characters and strings in directives/rules. */
 %x SC_ESCAPED_CHARACTER SC_ESCAPED_STRING SC_ESCAPED_TSTRING
+
+ /* Strings and characters in code. */
+%x SC_STRING SC_CHARACTER
 
 %%
 
@@ -153,7 +160,7 @@ xint=      0[xX][0-9abcdefABCDEF]+
   "%%"               { if(++percent_percent_count == 2) yybegin(SC_EPILOGUE); return new BisonTokenType("%%"); }
 
   {ID}                { return ID; }
-  {ID} ":"           { yypushback(1); return ID_COLON;}
+  {ID} ({Comment}|[ \f\t\v\r]|{EOL} |"//".*)* ":"  { yypushback(1); return ID_COLON;}
   {BRACKETED_ID}        { return BRACKETED_ID; }
   {int}           { return INT_LITERAL; }
   {xint}          { return INT_LITERAL; }
@@ -192,6 +199,61 @@ xint=      0[xX][0-9abcdefABCDEF]+
   <<EOF>> { throw new Error("Unexpected EOF"); }
 }
 
+  /*--------------------------------------------.
+  | Scanning user-code characters and strings.  |
+  `--------------------------------------------*/
+
+<SC_CHARACTER>
+{
+  '             { yybegin(context_state); }
+  . | \\'       { /* do nothing */ }
+  {EOL}         { throw new Error("Unexpected EOL"); }
+  <<EOF>>       { throw new Error("Unexpected EOF"); }
+}
+
+<SC_STRING>
+{
+  \"            { yybegin(context_state); }
+  . | \\\"      { /* do nothing */ }
+  {EOL}         { throw new Error("Unexpected EOL"); }
+  <<EOF>>       { throw new Error("Unexpected EOF"); }
+}
+
+
+  /*------------------------------------------------------------.
+  | Scanning a C comment.  The initial '/ *' is already eaten.  |
+  `------------------------------------------------------------*/
+
+<SC_COMMENT>
+{
+  ~("*"{splice}"/")  {yybegin(context_state);}
+  <<EOF>>         { throw new Error("Unexpected EOF"); }
+}
+
+
+  /*--------------------------------------------------------------.
+  | Scanning a line comment.  The initial '//' is already eaten.  |
+  `--------------------------------------------------------------*/
+
+<SC_LINE_COMMENT>
+{
+  {EOL}          { yybegin(context_state); }
+  .+             { /* do nothing */ }
+  <<EOF>>        { yybegin(context_state); }
+}
+
+  /*---------------------------------------------------.
+  | Strings, comments etc. can be found in user code.  |
+  `---------------------------------------------------*/
+
+<SC_BRACED_CODE,SC_PROLOGUE,SC_PREDICATE>
+{
+  ' { context_state = yystate(); yybegin(SC_CHARACTER); }
+  \" { context_state = yystate(); yybegin(SC_STRING); }
+  "/"{splice}"*" { context_state = yystate(); yybegin(SC_COMMENT); }
+  "/"{splice}"/" { context_state = yystate(); yybegin(SC_LINE_COMMENT); }
+}
+
 <SC_BRACED_CODE,SC_PREDICATE>
 {
   "{"|"<"{splice}"%"  { nesting++; }
@@ -206,18 +268,18 @@ xint=      0[xX][0-9abcdefABCDEF]+
 
 <SC_BRACED_CODE> {
    "}" { if (--nesting < 0) { yybegin(YYINITIAL); return BRACED_CODE_LITERAL; } }
-   {Comment} | [^{}]+ | {EOL} { /* do nothing */ }
+   . | {EOL} { /* do nothing */}
 }
 
 <SC_PREDICATE>
 {
-  "}" { if (--nesting < 0) { yybegin(YYINITIAL); return PREDICATE; } }
-   {Comment} | [^{}]+ | {EOL} { /* do nothing */ }
+  "}" { if (--nesting < 0) { yybegin(YYINITIAL); return PREDICATE_LITERAL; } }
+ . | {EOL} { /* do nothing */}
 }
 
 <SC_PROLOGUE> {
     "%}" {  yybegin(YYINITIAL); return PROLOGUE_LITERAL; }
-   {Comment} | [^%]+ | {EOL} { /* do nothing */ }
+    ~"%}" { yypushback(2);}
     <<EOF>>   { throw new Error("Unexpected EOF"); }
 }
 

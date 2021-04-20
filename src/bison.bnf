@@ -5,6 +5,7 @@
         ID_COLON="regexp:."
         PROLOGUE_LITERAL="regexp:."
         EPILOGUE_LITERAL="regexp:."
+        PREDICATE_LITERAL="regexp:."
         INT_LITERAL="regexp:."
         COMMENT="regexp:."
     ]
@@ -83,10 +84,11 @@ rules_or_grammar_declaration
          ::= rules ';'?
          | grammar_declaration ';'
 
-rules    ::= ID_COLON BRACKETED_ID? ':' rhs? ('|' rhs)*
+rules    ::= ID_COLON BRACKETED_ID? ':' rhs ('|' rhs)*
+
 rhs      ::= (symbol BRACKETED_ID?
             | TAG? braced_code BRACKETED_ID?
-            | PREDICATE
+            | predicate
             | '%empty'
             | '%prec' symbol
             | ( '%dprec' | '%expect' | '%expect-rr' ) INT_LITERAL
@@ -102,6 +104,7 @@ string_as_id
          ::= STRING
 
 // TOKENS
+predicate ::= PREDICATE_LITERAL
 braced_code ::= BRACED_CODE_LITERAL
 prologue ::= PROLOGUE_LITERAL
 epilogue ::= EPILOGUE_LITERAL

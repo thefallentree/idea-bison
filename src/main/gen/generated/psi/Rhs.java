@@ -14,6 +14,9 @@ public interface Rhs extends PsiElement {
   List<BracedCode> getBracedCodeList();
 
   @NotNull
+  List<Predicate> getPredicateList();
+
+  @NotNull
   List<Symbol> getSymbolList();
 
 }

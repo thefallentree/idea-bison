@@ -334,6 +334,18 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // PREDICATE_LITERAL
+  public static boolean predicate(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "predicate")) return false;
+    if (!nextTokenIs(b, PREDICATE_LITERAL)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, PREDICATE_LITERAL);
+    exit_section_(b, m, PREDICATE, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // PROLOGUE_LITERAL
   public static boolean prologue(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "prologue")) return false;
@@ -522,7 +534,7 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // (symbol BRACKETED_ID?
   //             | TAG? braced_code BRACKETED_ID?
-  //             | PREDICATE
+  //             | predicate
   //             | '%empty'
   //             | '%prec' symbol
   //             | ( '%dprec' | '%expect' | '%expect-rr' ) INT_LITERAL
@@ -541,7 +553,7 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
 
   // symbol BRACKETED_ID?
   //             | TAG? braced_code BRACKETED_ID?
-  //             | PREDICATE
+  //             | predicate
   //             | '%empty'
   //             | '%prec' symbol
   //             | ( '%dprec' | '%expect' | '%expect-rr' ) INT_LITERAL
@@ -552,7 +564,7 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = rhs_0_0(b, l + 1);
     if (!r) r = rhs_0_1(b, l + 1);
-    if (!r) r = consumeToken(b, PREDICATE);
+    if (!r) r = predicate(b, l + 1);
     if (!r) r = consumeToken(b, "%empty");
     if (!r) r = rhs_0_4(b, l + 1);
     if (!r) r = rhs_0_5(b, l + 1);
@@ -649,7 +661,7 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ID_COLON BRACKETED_ID? ':' rhs? ('|' rhs)*
+  // ID_COLON BRACKETED_ID? ':' rhs ('|' rhs)*
   public static boolean rules(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "rules")) return false;
     if (!nextTokenIs(b, ID_COLON)) return false;
@@ -658,7 +670,7 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, ID_COLON);
     r = r && rules_1(b, l + 1);
     r = r && consumeToken(b, ":");
-    r = r && rules_3(b, l + 1);
+    r = r && rhs(b, l + 1);
     r = r && rules_4(b, l + 1);
     exit_section_(b, m, RULES, r);
     return r;
@@ -668,13 +680,6 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
   private static boolean rules_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "rules_1")) return false;
     consumeToken(b, BRACKETED_ID);
-    return true;
-  }
-
-  // rhs?
-  private static boolean rules_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "rules_3")) return false;
-    rhs(b, l + 1);
     return true;
   }
 
