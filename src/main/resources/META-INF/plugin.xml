@@ -4,7 +4,38 @@
     <vendor email="sunyucong@gmail.com" url="https://github.com/thefallentree/idea-bison">Yucong Sun</vendor>
 
     <description><![CDATA[
-    Bison grammar file (*.y) support: folding, syntax highlight, and more!
+<p>
+	This plugin adds Bison grammar file support (*.y).
+</p>
+<p>
+	<br />
+	Currently implemented features:
+</p>
+<ul>
+	<li>
+		File Validation: detect grammar issues in the file.
+	</li>
+	<li>
+		Folding Prologue, Epilogue, individual Rule and Code sections "{...}", make reading grammar easier.
+	</li>
+</ul>
+<p>
+	Planned features:
+</p>
+<ul>
+	<li>
+		syntax highlighting
+	</li>
+	<li>
+		Jump to rule/component/token definition.
+	</li>
+	<li>
+		Injected language support
+	</li>
+	<li>
+		etc.
+	</li>
+</ul>
     ]]></description>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
