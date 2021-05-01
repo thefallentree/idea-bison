@@ -1,5 +1,5 @@
 plugins {
-    id 'org.jetbrains.intellij' version '0.7.2'
+    id 'org.jetbrains.intellij' version '0.7.3'
     id 'idea'
 }
 
@@ -8,7 +8,7 @@ repositories {
 }
 
 group 'info.fluffos'
-version '0.1.2021042001'
+version '0.1.2021050101'
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
@@ -18,13 +18,19 @@ intellij {
 
 patchPluginXml {
     changeNotes """
-      2021.04.20 synxtax highlight support.
-      2021.04.19 initial release.
+      <p>2021.05.01 bug fixes.</p>
+      <p>2021.04.20 synxtax highlight support.</p>
+      <p>2021.04.19 initial release.</p>
       """
 }
 
 publishPlugin {
     token = System.getenv("ORG_GRADLE_PROJECT_intellijPublishToken")
+}
+
+patchPluginXml {
+    sinceBuild = "201.*"
+    untilBuild = "211.*"
 }
 
 sourceSets.main.java.srcDirs 'src/main/gen'

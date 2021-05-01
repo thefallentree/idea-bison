@@ -11,6 +11,7 @@ import com.intellij.openapi.project.DumbAware;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.util.PsiElementFilter;
 import com.intellij.psi.util.PsiTreeUtil;
+import generated.GeneratedTypes;
 import generated.psi.*;
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +25,7 @@ public class BisonFoldingBuilder extends FoldingBuilderEx implements DumbAware {
     @Override
     public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick) {
         ArrayList<FoldingDescriptor> descriptors = Lists.newArrayList();
-        for(var e: PsiTreeUtil.findChildrenOfAnyType(root,BracedCode.class, Predicate.class, Prologue.class, Epilogue.class)) {
+        for(var e: PsiTreeUtil.findChildrenOfAnyType(root, BracedCode.class, Predicate.class, Prologue.class, Epilogue.class)) {
             descriptors.add(new FoldingDescriptor(e.getNode(),
                     e.getTextRange(),
                     FoldingGroup.newGroup("")));
@@ -38,14 +39,14 @@ public class BisonFoldingBuilder extends FoldingBuilderEx implements DumbAware {
     public @Nullable String getPlaceholderText(@NotNull ASTNode node) {
         var el = node.getPsi();
 
-        if(el instanceof BracedCode) {
+        if(el instanceof BracedCode || el instanceof Predicate) {
             return "{...}";
         } else if (el instanceof Prologue) {
             return "Prologue: ...";
         } else if (el instanceof Epilogue) {
             return "Epilogue: ...";
         } else if (el instanceof Rules) {
-            return "Rule: ...";
+            return "Rule: " + ((Rules) el).getIdColon().getText() + " ...";
         }
         return "...";
     }
