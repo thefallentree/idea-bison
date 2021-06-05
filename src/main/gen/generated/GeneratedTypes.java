@@ -37,22 +37,22 @@ public interface GeneratedTypes {
   IElementType VALUE = new BisonCompositeElementType("VALUE");
   IElementType VARIABLE = new BisonCompositeElementType("VARIABLE");
 
-  IElementType BRACED_CODE_LITERAL = new BisonTokenType("BRACED_CODE_LITERAL");
-  IElementType BRACKETED_ID = new BisonTokenType("BRACKETED_ID");
-  IElementType CHAR_LITERAL = new BisonTokenType("CHAR_LITERAL");
-  IElementType COMMENT = new BisonTokenType("COMMENT");
-  IElementType EPILOGUE_LITERAL = new BisonTokenType("EPILOGUE_LITERAL");
-  IElementType ERROR = new BisonTokenType("error");
-  IElementType ID = new BisonTokenType("ID");
-  IElementType ID_COLON = new BisonTokenType("ID_COLON");
-  IElementType INT_LITERAL = new BisonTokenType("INT_LITERAL");
-  IElementType PREDICATE_LITERAL = new BisonTokenType("PREDICATE_LITERAL");
-  IElementType PROLOGUE_LITERAL = new BisonTokenType("PROLOGUE_LITERAL");
-  IElementType STRING = new BisonTokenType("STRING");
-  IElementType TAG_ANY = new BisonTokenType("TAG_ANY");
-  IElementType TAG_NONE = new BisonTokenType("TAG_NONE");
-  IElementType TAG_TAG = new BisonTokenType("TAG_TAG");
-  IElementType TSTRING = new BisonTokenType("TSTRING");
+  IElementType BRACED_CODE_LITERAL = BisonTokenType.token("BRACED_CODE_LITERAL");
+  IElementType BRACKETED_ID = BisonTokenType.token("BRACKETED_ID");
+  IElementType CHAR_LITERAL = BisonTokenType.token("CHAR_LITERAL");
+  IElementType COMMENT = BisonTokenType.token("COMMENT");
+  IElementType EPILOGUE_LITERAL = BisonTokenType.token("EPILOGUE_LITERAL");
+  IElementType ERROR = BisonTokenType.token("error");
+  IElementType ID = BisonTokenType.token("ID");
+  IElementType ID_COLON = BisonTokenType.token("ID_COLON");
+  IElementType INT_LITERAL = BisonTokenType.token("INT_LITERAL");
+  IElementType PREDICATE_LITERAL = BisonTokenType.token("PREDICATE_LITERAL");
+  IElementType PROLOGUE_LITERAL = BisonTokenType.token("PROLOGUE_LITERAL");
+  IElementType STRING = BisonTokenType.token("STRING");
+  IElementType TAG_ANY = BisonTokenType.token("TAG_ANY");
+  IElementType TAG_NONE = BisonTokenType.token("TAG_NONE");
+  IElementType TAG_TAG = BisonTokenType.token("TAG_TAG");
+  IElementType TSTRING = BisonTokenType.token("TSTRING");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {

@@ -1,10 +1,9 @@
 package generated.lexer;
 
-import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import info.fluffos.BisonTokenType;
 
-import java.io.IOException;import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static generated.GeneratedTypes.*;
 
@@ -140,10 +139,10 @@ xint=      0[xX][0-9abcdefABCDEF]+
   "%no"[-_]"lines"                  { return BisonTokenType.directive("%no-lines"); }
   "%output"{eqopt}                  { return BisonTokenType.directive("%output"); }
   "%token"[-_]"table"               { return BisonTokenType.directive("%token-table"); }
-  ":"           {return new BisonTokenType(":"); }
-  "="           {return new BisonTokenType("="); }
-  "|"           {return new BisonTokenType("|"); }
-  ";"           {return new BisonTokenType(";"); }
+  ":"           {return BisonTokenType.token(":"); }
+  "="           {return BisonTokenType.token("="); }
+  "|"           {return BisonTokenType.token("|"); }
+  ";"           {return BisonTokenType.token(";"); }
 
   {SPACE}       { return WHITE_SPACE; }
   {Comment}           { return COMMENT; }
@@ -157,7 +156,7 @@ xint=      0[xX][0-9abcdefABCDEF]+
 
   "%{"                { yybegin(SC_PROLOGUE); }
   "{"                 {nesting = 0; yybegin(SC_BRACED_CODE); }
-  "%%"               { if(++percent_percent_count == 2) yybegin(SC_EPILOGUE); return new BisonTokenType("%%"); }
+  "%%"               { if(++percent_percent_count == 2) yybegin(SC_EPILOGUE); return BisonTokenType.token("%%"); }
 
   {ID}                { return ID; }
   {ID} ({Comment}|[ \f\t\v\r]|{EOL} |"//".*)* ":"  { yypushback(1); return ID_COLON;}

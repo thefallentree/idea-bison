@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class BisonTokenType extends IElementType {
     private static final Map<String, BisonDirective> directive_map = Maps.newHashMap();
+    private static final Map<String, BisonTokenType> token_map = Maps.newHashMap();
 
     public BisonTokenType(@NonNls @NotNull String debugName) {
         super(debugName, BisonLanguage.INSTANCE);
@@ -20,8 +21,13 @@ public class BisonTokenType extends IElementType {
         }
     }
 
+    public static BisonTokenType token(@NonNls @NotNull String name) {
+        token_map.computeIfAbsent(name, BisonTokenType::new);
+        return token_map.get(name);
+    }
+
     public static BisonTokenType directive(@NonNls @NotNull String name) {
-        directive_map.putIfAbsent(name, new BisonDirective(name));
+        directive_map.computeIfAbsent(name, BisonDirective::new);
         return directive_map.get(name);
     }
 }

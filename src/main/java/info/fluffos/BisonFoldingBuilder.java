@@ -26,9 +26,11 @@ public class BisonFoldingBuilder extends FoldingBuilderEx implements DumbAware {
     public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick) {
         ArrayList<FoldingDescriptor> descriptors = Lists.newArrayList();
         for(var e: PsiTreeUtil.findChildrenOfAnyType(root, BracedCode.class, Predicate.class, Prologue.class, Epilogue.class)) {
-            descriptors.add(new FoldingDescriptor(e.getNode(),
-                    e.getTextRange(),
-                    FoldingGroup.newGroup("")));
+            if (e.getTextRange().getLength() > 0) {
+                descriptors.add(new FoldingDescriptor(e.getNode(),
+                        e.getTextRange(),
+                        FoldingGroup.newGroup("")));
+            }
         }
 
         return descriptors.toArray(new FoldingDescriptor[0]);

@@ -10,7 +10,7 @@
         COMMENT="regexp:."
     ]
     elementTypeClass="info.fluffos.BisonCompositeElementType"
-    tokenTypeClass="info.fluffos.BisonTokenType"
+    tokenTypeFactory="info.fluffos.BisonTokenType.token"
 }
 
 

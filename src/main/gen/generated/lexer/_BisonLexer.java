@@ -2,11 +2,10 @@
 
 package generated.lexer;
 
-import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import info.fluffos.BisonTokenType;
 
-import java.io.IOException;import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static generated.GeneratedTypes.*;
 
@@ -805,12 +804,12 @@ public class _BisonLexer {
             // fall through
           case 93: break;
           case 4: 
-            { return new BisonTokenType(":");
+            { return BisonTokenType.token(":");
             } 
             // fall through
           case 94: break;
           case 5: 
-            { return new BisonTokenType("=");
+            { return BisonTokenType.token("=");
             } 
             // fall through
           case 95: break;
@@ -820,12 +819,12 @@ public class _BisonLexer {
             // fall through
           case 96: break;
           case 7: 
-            { return new BisonTokenType("|");
+            { return BisonTokenType.token("|");
             } 
             // fall through
           case 97: break;
           case 8: 
-            { return new BisonTokenType(";");
+            { return BisonTokenType.token(";");
             } 
             // fall through
           case 98: break;
@@ -920,7 +919,7 @@ public class _BisonLexer {
             // fall through
           case 116: break;
           case 27: 
-            { if(++percent_percent_count == 2) yybegin(SC_EPILOGUE); return new BisonTokenType("%%");
+            { if(++percent_percent_count == 2) yybegin(SC_EPILOGUE); return BisonTokenType.token("%%");
             } 
             // fall through
           case 117: break;
