@@ -9,21 +9,18 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.FoldingGroup;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.util.PsiElementFilter;
 import com.intellij.psi.util.PsiTreeUtil;
-import generated.GeneratedTypes;
 import generated.psi.*;
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class BisonFoldingBuilder extends FoldingBuilderEx implements DumbAware {
     @NotNull
     @Override
-    public FoldingDescriptor @NotNull [] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick) {
+    public FoldingDescriptor[] buildFoldRegions(@NotNull PsiElement root, @NotNull Document document, boolean quick) {
         ArrayList<FoldingDescriptor> descriptors = Lists.newArrayList();
         for(var e: PsiTreeUtil.findChildrenOfAnyType(root, BracedCode.class, Predicate.class, Prologue.class, Epilogue.class)) {
             if (e.getTextRange().getLength() > 0) {

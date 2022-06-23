@@ -3,5 +3,7 @@
 /build
 /.idea
 /gradle
+/gradlew
+/gradlew.bat
 /src/main/gen/idea-flex.skeleton
 /src/main/gen/jflex-1.7.0-2.jar

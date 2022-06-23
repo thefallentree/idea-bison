@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.0'
+    id 'org.jetbrains.intellij' version '1.6.0'
     id 'idea'
 }
 
@@ -9,17 +9,17 @@ repositories {
 }
 
 group 'info.fluffos'
-version '0.1.2021060501'
+version '0.1.2022062201'
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version = '2021.1'
+    version = '2022.1'
     // type "CL"
 }
 
 patchPluginXml {
     sinceBuild = "201.*"
-    untilBuild = '211.*'
+    untilBuild = '221.*'
     changeNotes = """
       <p>2021.06.05 more bug fixes.</p>
       <p>2021.05.01 bug fixes.</p>
