@@ -8,10 +8,12 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static generated.GeneratedTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import info.fluffos.BisonNamedElementImpl;
 import generated.psi.*;
+import info.fluffos.BisonPsiImplUtil;
+import com.intellij.navigation.ItemPresentation;
 
-public class RulesImpl extends ASTWrapperPsiElement implements Rules {
+public class RulesImpl extends BisonNamedElementImpl implements Rules {
 
   public RulesImpl(@NotNull ASTNode node) {
     super(node);
@@ -37,6 +39,26 @@ public class RulesImpl extends ASTWrapperPsiElement implements Rules {
   @NotNull
   public PsiElement getIdColon() {
     return findNotNullChildByType(ID_COLON);
+  }
+
+  @Override
+  public String getName() {
+    return BisonPsiImplUtil.getName(this);
+  }
+
+  @Override
+  public PsiElement setName(String newName) {
+    return BisonPsiImplUtil.setName(this, newName);
+  }
+
+  @Override
+  public PsiElement getNameIdentifier() {
+    return BisonPsiImplUtil.getNameIdentifier(this);
+  }
+
+  @Override
+  public ItemPresentation getPresentation() {
+    return BisonPsiImplUtil.getPresentation(this);
   }
 
 }

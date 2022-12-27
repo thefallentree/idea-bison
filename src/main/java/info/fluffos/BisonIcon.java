@@ -7,6 +7,12 @@ import com.intellij.openapi.util.IconLoader;
 import javax.swing.*;
 
 public class BisonIcon {
-    public static final Icon FILE = IconLoader.getIcon("y.png", BisonIcon.class);
+    public static class File {}
+
+    public static class Rule {}
+
+    public static final Icon FILE = IconLoader.getIcon("y.png", File.class);
+
+    public static final Icon RULE = IconLoader.getIcon("r-16x16.png", Rule.class);
 
 }

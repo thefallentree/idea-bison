@@ -9,6 +9,10 @@
         INT_LITERAL="regexp:."
         COMMENT="regexp:."
     ]
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiImplUtilClass="info.fluffos.BisonPsiImplUtil"
     elementTypeClass="info.fluffos.BisonCompositeElementType"
     tokenTypeFactory="info.fluffos.BisonTokenType.token"
 }
@@ -84,7 +88,11 @@ rules_or_grammar_declaration
          ::= rules ';'?
          | grammar_declaration ';'
 
-rules    ::= ID_COLON BRACKETED_ID? ':' rhs ('|' rhs)*
+rules    ::= ID_COLON BRACKETED_ID? ':' rhs ('|' rhs)* {
+  mixin="info.fluffos.BisonNamedElementImpl"
+  implements="info.fluffos.BisonNamedElement"
+  methods=[getKey getValue getName setName getNameIdentifier getPresentation]
+}
 
 rhs      ::= (symbol BRACKETED_ID?
             | TAG? braced_code BRACKETED_ID?

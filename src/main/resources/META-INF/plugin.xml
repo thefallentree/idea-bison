@@ -49,6 +49,7 @@
         <lang.parserDefinition language="Bison" implementationClass="info.fluffos.BisonParserDefinition"/>
         <lang.foldingBuilder language="Bison" implementationClass="info.fluffos.BisonFoldingBuilder"/>
         <lang.syntaxHighlighterFactory language="Bison" implementationClass="info.fluffos.BisonSyntaxHighlighterFactory"/>
+        <lang.psiStructureViewFactory language="Bison" implementationClass="info.fluffos.BisonStructureViewFactory"/>
     </extensions>
 
     <actions>

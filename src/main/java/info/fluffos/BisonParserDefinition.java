@@ -54,16 +54,19 @@ public class BisonParserDefinition implements ParserDefinition {
         return new GeneratedParser();
     }
 
+    @NotNull
     @Override
     public IFileElementType getFileNodeType() {
         return FILE;
     }
 
+    @NotNull
     @Override
-    public PsiFile createFile(FileViewProvider viewProvider) {
+    public PsiFile createFile(@NotNull FileViewProvider viewProvider) {
         return new BisonFile(viewProvider);
     }
 
+    @NotNull
     @Override
     public SpaceRequirements spaceExistenceTypeBetweenTokens(ASTNode left, ASTNode right) {
         return SpaceRequirements.MAY;

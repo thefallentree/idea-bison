@@ -4,6 +4,7 @@ package generated.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import info.fluffos.BisonNamedElement;
 
 public class Visitor extends PsiElementVisitor {
 
@@ -64,7 +65,7 @@ public class Visitor extends PsiElementVisitor {
   }
 
   public void visitRules(@NotNull Rules o) {
-    visitPsiElement(o);
+    visitBisonNamedElement(o);
   }
 
   public void visitRulesOrGrammarDeclaration(@NotNull RulesOrGrammarDeclaration o) {
@@ -109,6 +110,10 @@ public class Visitor extends PsiElementVisitor {
 
   public void visitVariable(@NotNull Variable o) {
     visitPsiElement(o);
+  }
+
+  public void visitBisonNamedElement(@NotNull BisonNamedElement o) {
+    visitElement(o);
   }
 
   public void visitPsiElement(@NotNull PsiElement o) {

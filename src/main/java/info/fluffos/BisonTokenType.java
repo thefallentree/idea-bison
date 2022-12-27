@@ -15,6 +15,12 @@ public class BisonTokenType extends IElementType {
         super(debugName, BisonLanguage.INSTANCE);
     }
 
+
+    @Override
+    public String toString() {
+        return "BisonTokenType." + super.toString();
+    }
+
     public static class BisonDirective extends BisonTokenType {
         public BisonDirective(@NotNull String debugName) {
             super(debugName);

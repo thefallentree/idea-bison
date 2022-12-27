@@ -10,6 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static generated.GeneratedTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import generated.psi.*;
+import info.fluffos.BisonPsiImplUtil;
 
 public class StringAsIdImpl extends ASTWrapperPsiElement implements StringAsId {
 
