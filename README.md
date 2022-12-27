@@ -1,6 +1,6 @@
 # idea-bison
 idea bison grammar support
 
-status: working alpha
 
-![image](https://user-images.githubusercontent.com/1256464/115133202-ed9c7a80-a038-11eb-915b-3d1d8d6a206d.png)
+
+![QQ截图20221226180313](https://user-images.githubusercontent.com/1256464/209600154-0826220a-d57e-4a6d-98e8-31e29e85f216.png)
