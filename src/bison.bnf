@@ -32,6 +32,8 @@ prologue_declaration ::= prologue
            | '%no-lines'
            | '%nondeterministic-parser'
            | '%param' braced_code+
+           | '%parse-param' braced_code+
+           | '%lex-param' braced_code+
            | '%pure-parser'
            | '%token-table'
            | '%verbose'
