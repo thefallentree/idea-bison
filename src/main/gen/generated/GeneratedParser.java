@@ -4,7 +4,7 @@ package generated;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
 import static generated.GeneratedTypes.*;
-import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
+import static generated.BisonParserUtil.*;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.tree.TokenSet;
@@ -371,6 +371,8 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
   //            | '%no-lines'
   //            | '%nondeterministic-parser'
   //            | '%param' braced_code+
+  //            | '%parse-param' braced_code+
+  //            | '%lex-param' braced_code+
   //            | '%pure-parser'
   //            | '%token-table'
   //            | '%verbose'
@@ -393,11 +395,13 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, "%no-lines");
     if (!r) r = consumeToken(b, "%nondeterministic-parser");
     if (!r) r = prologue_declaration_12(b, l + 1);
+    if (!r) r = prologue_declaration_13(b, l + 1);
+    if (!r) r = prologue_declaration_14(b, l + 1);
     if (!r) r = consumeToken(b, "%pure-parser");
     if (!r) r = consumeToken(b, "%token-table");
     if (!r) r = consumeToken(b, "%verbose");
     if (!r) r = consumeToken(b, "%yacc");
-    if (!r) r = prologue_declaration_17(b, l + 1);
+    if (!r) r = prologue_declaration_19(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -513,20 +517,72 @@ public class GeneratedParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // error? ';'
-  private static boolean prologue_declaration_17(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "prologue_declaration_17")) return false;
+  // '%parse-param' braced_code+
+  private static boolean prologue_declaration_13(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "prologue_declaration_13")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = prologue_declaration_17_0(b, l + 1);
+    r = consumeToken(b, "%parse-param");
+    r = r && prologue_declaration_13_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // braced_code+
+  private static boolean prologue_declaration_13_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "prologue_declaration_13_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = braced_code(b, l + 1);
+    while (r) {
+      int c = current_position_(b);
+      if (!braced_code(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "prologue_declaration_13_1", c)) break;
+    }
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // '%lex-param' braced_code+
+  private static boolean prologue_declaration_14(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "prologue_declaration_14")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, "%lex-param");
+    r = r && prologue_declaration_14_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // braced_code+
+  private static boolean prologue_declaration_14_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "prologue_declaration_14_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = braced_code(b, l + 1);
+    while (r) {
+      int c = current_position_(b);
+      if (!braced_code(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "prologue_declaration_14_1", c)) break;
+    }
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // error? ';'
+  private static boolean prologue_declaration_19(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "prologue_declaration_19")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = prologue_declaration_19_0(b, l + 1);
     r = r && consumeToken(b, ";");
     exit_section_(b, m, null, r);
     return r;
   }
 
   // error?
-  private static boolean prologue_declaration_17_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "prologue_declaration_17_0")) return false;
+  private static boolean prologue_declaration_19_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "prologue_declaration_19_0")) return false;
     consumeToken(b, ERROR);
     return true;
   }

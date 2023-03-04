@@ -1,4 +1,5 @@
 {
+  parserUtilClass="generated.BisonParserUtil"
     // stubs
     tokens = [
         ID="regexp:."
