@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.13.1'
+    id 'org.jetbrains.intellij' version '1.15.0'
     id 'idea'
 }
 
@@ -9,7 +9,7 @@ repositories {
 }
 
 group 'info.fluffos'
-version '20230303.01'
+version '20230902.02'
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
@@ -18,7 +18,8 @@ intellij {
 }
 
 patchPluginXml {
-    sinceBuild = "222.*"
+    sinceBuild = "223.*"
+    untilBuild = ""
     changeNotes = """
       <p>2023.03.03 support %parse-param and %lex-param.</p>
       <p>2022.12.26 update to 2022.3, and structure view!</p>
